@@ -1,6 +1,9 @@
 const {test, expect} = require('@playwright/test');
 const MainPage = require('../pages/main-page');
 const ArticlePage = require('../pages/article-page');
+const LoginPage = require('../pages/login-page');
+const PagesSettingFragment = require('../pages/fragments/pages-setting-fragment')
+
 
 test('Guest click on first article and see it', async ({page}) => {
     await page.goto('/');
@@ -40,5 +43,29 @@ test('the same click article', async ({page}) => {
     await articlePage.seeArticleText();
 })
 
+test('Chane lang by page setting menu', async ({page}) => {
+    const mainPage = new MainPage(page);
+    await mainPage.open();
+    await mainPage.header.openPageSettingMenu();
+
+    const pageSettingFragments = new PagesSettingFragment(page);
+
+    await pageSettingFragments.changeLangTo("Русский");
+
+    await page.waitForLoadState("networkidle")
+    await expect(page).toHaveURL(/ru/)
+})
+
+test.only('Login', async ({page}) => {
+    const mainPage = new MainPage(page);
+    await mainPage.open();
+
+    const loginPage = await mainPage.header.clickLoginBtn()
+
+    await loginPage.fillLoginForm('test','test12345');
+    await loginPage.clickLoginBtn();
+
+
+})
 
 

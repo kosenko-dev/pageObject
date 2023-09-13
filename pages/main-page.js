@@ -8,7 +8,6 @@ class MainPage extends BasePage{
         this.page = page;
         this.header = new Header(page);
         this._firstArticle = page.locator('[class=tm-articles-list__item] [class*=tm-title_h2]').first();
-
     }
 
     async open() {
