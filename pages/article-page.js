@@ -1,15 +1,14 @@
-exports.ArticlePage = class ArticlePage {
-
+class ArticlePage {
 
     constructor(page) {
         this.page = page;
-        this.articleText = page.locator('[class*=article-formatted-body]')
+        this._articleText = page.locator('[class*=article-formatted-body]')
 
     }
 
     async seeArticleText() {
-        await this.articleText.waitFor({state: "visible"})
+        await this._articleText.waitFor({state: "visible"})
     }
+}
 
-
-};
+module.exports = ArticlePage;

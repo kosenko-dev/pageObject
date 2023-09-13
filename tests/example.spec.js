@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test');
-const {MainPage} = require('../pages/main-page');
-const {ArticlePage} = require('../pages/article-page');
+const MainPage = require('../pages/main-page');
+const ArticlePage = require('../pages/article-page');
 
 test('Guest click on first article and see it', async ({page}) => {
     await page.goto('/');
@@ -39,3 +39,6 @@ test('the same click article', async ({page}) => {
     const articlePage = new ArticlePage(page)
     await articlePage.seeArticleText();
 })
+
+
+

@@ -1,14 +1,15 @@
-exports.SearchResultPage = class SearchResultPage {
+class SearchResultPage {
 
     constructor(page) {
         this.page = page;
-        this.articlesList = page.locator('[class=tm-articles-list]')
+        this._articlesList = page.locator('[class=tm-articles-list]')
 
     }
-
 
     async seeResultArticles() {
-        await this.articlesList.waitFor({state: "visible"})
+        await this._articlesList.waitFor({state: "visible"})
     }
 
-};
+}
+
+module.exports = SearchResultPage;

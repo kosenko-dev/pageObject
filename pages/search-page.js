@@ -1,12 +1,11 @@
-const {SearchResultPage} = require("./search-result-page");
+const SearchResultPage = require("./search-result-page");
 
-exports.SearchPage = class SearchPage {
-
+class SearchPage {
 
     constructor(page) {
         this.page = page;
-        this.searchInput = page.locator('input[name=q]');
-        this.startSearchBtn = page.locator('[class*=tm-search__icon]');
+        this._searchInput = page.locator('input[name=q]');
+        this._startSearchBtn = page.locator('[class*=tm-search__icon]');
 
     }
 
@@ -15,9 +14,11 @@ exports.SearchPage = class SearchPage {
     }
 
     async searchArticle(query) {
-        await this.searchInput.fill(query);
-        await this.startSearchBtn.click();
+        await this._searchInput.fill(query);
+        await this._startSearchBtn.click();
         return new SearchResultPage(this.page);
     }
 
-};
+}
+
+module.exports = SearchPage

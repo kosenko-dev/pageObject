@@ -1,15 +1,13 @@
-const {Header} = require("./fragments/header");
-const {BasePage} = require("./base-page");
+const Header = require("./fragments/header");
+const BasePage = require("./base-page");
 
-exports.MainPage = class MainPage extends BasePage{
-
-
+class MainPage extends BasePage{
 
     constructor(page) {
         super(page);
         this.page = page;
         this.header = new Header(page);
-        this.firstArticle = page.locator('[class=tm-articles-list__item] [class*=tm-title_h2]').first();
+        this._firstArticle = page.locator('[class=tm-articles-list__item] [class*=tm-title_h2]').first();
 
     }
 
@@ -18,7 +16,9 @@ exports.MainPage = class MainPage extends BasePage{
     }
 
     async clickOnFirstArticle() {
-        await this.firstArticle.click()
+        await this._firstArticle.click()
     }
 
-};
+}
+
+module.exports = MainPage;
