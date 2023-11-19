@@ -1,30 +1,42 @@
-const SearchPage = require("../search-page");
-const LoginPage = require("../login-page");
-
 class Header {
     constructor(page) {
         this.page = page;
-        this.root = page.locator('[class*=tm-base-layout__header_is-sticky]')
-        this._searchBtn = page.locator('[class*=tm-header-user-menu__search]');
-        this._userMenu = page.locator('[class*=tm-dropdown__head]').first();
-        this._pageSettingsBtn = page.locator('[class*=tm-user-menu__menu-link_grey]');
-        this._loginBtninMenu = page.locator('[class*=tm-user-menu__auth-button]').nth(1)
+        this.root = page.locator("#logo-container");
+        this._contactHLink = page.getByRole('link', { name: 'Contact' });
+        this._donateHLink = page.getByRole('link', { name: 'Donate' });
+        this._downloadHLink = page.getByRole('link', { name: 'Download' });
+        this._guideHLink = page.getByRole('link', { name: 'Guide' });
+        this._linksHLink = page.getByRole('link', { name: 'Links' });
     }
 
-    async clickSearchBtn() {
-        await this._searchBtn.click();
-        return new SearchPage(this.page);
+    async clickRoot() {
+        await this.root.click();
+        return this.page;
     }
 
-    async openPageSettingMenu() {
-        await this._userMenu.click()
-        await this._pageSettingsBtn.click()
-    }
+    async clickContactHLink() {
+        await this._contactHLink.click();
+        return this.page;
+    };
 
-    async clickLoginBtn() {
-        await this._userMenu.click();
-        await this._loginBtninMenu.click();
-        return new LoginPage(this.page);
+    async clickDonateHLink() {
+        await this._donateHLink.click();
+        return this.page;
+    };
+
+    async clickDownloadHLink() {
+        await this._downloadHLink.click();
+        return this.page;
+    };
+
+    async clickGuideHLink() {
+        await this._guideHLink.click();
+        return this.page;
+    };
+
+    async clickLinksHLink() {
+        await this._linksHLink.click();
+        return this.page;
     };
 }
 
